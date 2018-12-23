@@ -1,0 +1,24 @@
+cdvPluginPostBuildExtras.add({
+
+    repositories {
+
+        maven {
+            url 'https://dl.bintray.com/ironsource-mobile/android-sdk'
+        }
+
+    }
+
+
+    dependencies {
+        implementation 'com.ironsource.sdk:mediationsdk:6.8.0.1@jar'
+        implementation 'com.android.support:support-v4:27.1.0'
+        implementation 'com.android.support:appcompat-v7:27.1.0'
+        implementation 'com.android.support:recyclerview-v7:27.1.0'
+        implementation 'com.android.support:support-annotations:27.1.0'
+        implementation 'com.google.android.gms:play-services-ads:17.1.2'
+
+    }
+
+
+
+});

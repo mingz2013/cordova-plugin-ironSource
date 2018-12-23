@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-ironsource" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <name>cordova-plugin-ironsource</name>
+    <description>Cordova plugin for IronSource Ads</description>
+    <js-module src="www/ironsourceads.js" name="IronSourceAds">
+        <clobbers target="IronSourceAds"/>
+    </js-module>
+
+    <engines>
+        <engine name="cordova" version=">=6.3.0"/>
+        <engine name="cordova-android" version=">=4.0.0"/>
+        <engine name="cordova-ios" version=">=4.3.0"/>
+    </engines>
+
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="IronSourceAdsPlugin">
+                <param name="android-package" value="me.mingz.cordova.plugin.ironsource.IronSourceAdsPlugin"/>
+            </feature>
+        </config-file>
+
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+                    android:name="com.ironsource.sdk.controller.ControllerActivity"
+                    android:configChanges="orientation|screenSize"
+                    android:hardwareAccelerated="true"/>
+            <activity
+                    android:name="com.ironsource.sdk.controller.InterstitialActivity"
+                    android:configChanges="orientation|screenSize"
+                    android:hardwareAccelerated="true"
+                    android:theme="@android:style/Theme.Translucent"/>
+            <activity
+                    android:name="com.ironsource.sdk.controller.OpenUrlActivity"
+                    android:configChanges="orientation|screenSize"
+                    android:hardwareAccelerated="true"
+                    android:theme="@android:style/Theme.Translucent"/>
+
+
+        </config-file>
+
+
+        <source-file src="src/android/IronSourceAdsPlugin.java"
+                     target-dir="src/me/mingz/cordova/plugin/ironsource"/>
+
+
+        <framework src="src/android/ironsourceads.gradle" custom="true" type="gradleReference"/>
+
+    </platform>
+
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="IronSourceAdsPlugin">
+                <param name="ios-package" value="IronSourceAdsPlugin"/>
+            </feature>
+            <preference name="deployment-target" value="9.0"/>
+
+        </config-file>
+
+
+        <header-file src="src/ios/IronSourceAdsPlugin.h"/>
+        <source-file src="src/ios/IronSourceAdsPlugin.m"/>
+
+
+        <framework src="IronSourceSDK" type="podspec" spec="~> 6.8.0.0"/>
+
+
+    </platform>
+</plugin>
